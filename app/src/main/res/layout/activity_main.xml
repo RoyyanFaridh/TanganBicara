@@ -63,13 +63,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
-            android:orientation="vertical"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="152dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -77,13 +75,81 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TeksKeVideo"
                     android:layout_width="180dp"
-                    android:layout_height="150dp" />
+                    android:layout_height="150dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img_TeksKeVideo"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"/>
+
+                        <TextView
+                            android:id="@+id/txt_TeksKeVideo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Teks Ke Video"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/desc_TeksKeVideo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
+                            android:textSize="12dp"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/PenerjemahanIsyarat"
                     android:layout_width="180dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="4dp"/>
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/img_PenerjemahanIsyarat"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"/>
+
+                        <TextView
+                            android:id="@+id/txt_PenerjemahanIsyarat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Penerjemahan Isyarat"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/desc_PenerjemahanIsyarat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
+                            android:textSize="12dp"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -91,7 +157,42 @@
                 android:id="@+id/MateriEdukasi"
                 android:layout_width="fill_parent"
                 android:layout_height="140dp"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_MateriEdukasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_materiedukasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Materi Edukasi"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/desc_materiedukasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
+                        android:textSize="12dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </LinearLayout>
