@@ -3,7 +3,6 @@ package com.example.tanganbicara
 import android.Manifest
 import android.os.Bundle
 import android.widget.Toast
-import android.widget.Button
 import android.content.pm.PackageManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +19,7 @@ import androidx.camera.view.PreviewView
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraInfo
 import androidx.camera.core.CameraControl
+import androidx.cardview.widget.CardView
 
 
 class PenerjemahanIsyarat : AppCompatActivity() {
@@ -53,7 +53,7 @@ class PenerjemahanIsyarat : AppCompatActivity() {
         }
 
         // Tombol untuk mengganti kamera
-        findViewById<Button>(R.id.switchCameraButton).setOnClickListener {
+        findViewById<CardView>(R.id.switchCameraButton).setOnClickListener {
             toggleCamera()
         }
     }
