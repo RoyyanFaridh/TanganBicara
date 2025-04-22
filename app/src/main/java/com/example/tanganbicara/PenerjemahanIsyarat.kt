@@ -1,8 +1,10 @@
 package com.example.tanganbicara
 
 import android.Manifest
+import android.util.Log
 import android.os.Bundle
 import android.widget.Toast
+import android.widget.FrameLayout
 import android.content.pm.PackageManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +12,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.content.ContextCompat
+import android.view.View
+import android.content.Intent
 
 //Camera
 import androidx.camera.core.CameraSelector
@@ -28,6 +32,8 @@ class PenerjemahanIsyarat : AppCompatActivity() {
     private var currentCameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var camera: Camera? = null // Gunakan nullable untuk kamera
     private lateinit var cameraProvider: ProcessCameraProvider
+    private var flashEnabled = false   // Untuk melacak status flash
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +62,23 @@ class PenerjemahanIsyarat : AppCompatActivity() {
         findViewById<CardView>(R.id.switchCameraButton).setOnClickListener {
             toggleCamera()
         }
+
+        val flashButton = findViewById<CardView>(R.id.flashCameraButton)
+        flashButton.setOnClickListener {
+            toggleFlash()
+        }
+
+        val backButton = findViewById<CardView>(R.id.btn_backPenerjemahanIsyarat)
+
+        backButton.setOnClickListener {
+            // Balik ke halaman home (bisa MainActivity atau yang lain)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish() // Tutup activity sekarang biar ga numpuk
+        }
+
+
     }
 
     private fun setupCamera() {
@@ -63,13 +86,19 @@ class PenerjemahanIsyarat : AppCompatActivity() {
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
-            cameraProvider = cameraProviderFuture.get() // <== ini yang penting
+            cameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(previewView.surfaceProvider)
             }
 
-            cameraProvider.bindToLifecycle(this, currentCameraSelector, preview) // gunakan currentCameraSelector
+            try {
+                cameraProvider?.unbindAll() // Unbind dulu biar gak bentrok
+                camera = cameraProvider?.bindToLifecycle(this, currentCameraSelector, preview)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
         }, ContextCompat.getMainExecutor(this))
     }
 
@@ -123,4 +152,44 @@ class PenerjemahanIsyarat : AppCompatActivity() {
         }
     }
 
+    private fun toggleFlash() {
+        val hasFlash = camera?.cameraInfo?.hasFlashUnit() ?: false
+        val isFront = currentCameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA
+
+        flashEnabled = !flashEnabled
+
+        if (isFront) {
+            simulateScreenFlash(flashEnabled)
+        } else if (hasFlash) {
+            camera?.cameraControl?.enableTorch(flashEnabled)
+        } else {
+            Toast.makeText(this, "Flash tidak tersedia", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun simulateScreenFlash(enable: Boolean) {
+        val screenFlashOverlay = findViewById<View>(R.id.screenFlashOverlay)
+
+        // Pastikan kode berjalan di UI thread
+        runOnUiThread {
+            if (enable) {
+                Log.d("ScreenFlash", "Enabling screen flash")
+                screenFlashOverlay.apply {
+                    alpha = 1f
+                    visibility = View.VISIBLE
+                    bringToFront()
+                }
+            } else {
+                Log.d("ScreenFlash", "Disabling screen flash")
+                screenFlashOverlay.animate()
+                    .alpha(0f)
+                    .setDuration(300)
+                    .withEndAction {
+                        screenFlashOverlay.visibility = View.GONE
+                        Log.d("ScreenFlash", "Screen flash disabled")
+                    }
+                    .start()
+            }
+        }
+    }
 }

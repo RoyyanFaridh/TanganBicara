@@ -1,0 +1,6 @@
+<!-- res/drawable/rounded_white.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#90FFFFFF" /> <!-- Putih setengah transparan -->
+    <corners android:radius="10dp" /> <!-- Biar gak tegas -->
+</shape>
