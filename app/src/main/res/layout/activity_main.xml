@@ -8,15 +8,6 @@
     android:background="@color/white"
     tools:context=".MainActivity">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp"></LinearLayout>
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -35,9 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold_italic"
-            android:text="Selamat Datang!"
             android:textColor="#007BFF"
-            android:textSize="42dp" />
+            android:textSize="50sp"
+            android:lineSpacingExtra="-17dp"
+            android:text="@string/underline_main"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -46,22 +38,18 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_light"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa. Donec finibus finibus risus,"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="432dp"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:paddingBottom="20dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
+        android:layout_width="413dp"
+        android:layout_height="450dp"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="-1dp"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
@@ -71,8 +59,8 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="397dp"
+                android:layout_height="280dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,29 +68,25 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/TeksKeVideo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="170dp"
+                    android:layout_height="250dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:padding="4dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="1dp">
+                    android:layout_marginRight="5dp"
+                    app:cardElevation="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
 
                         <ImageView
                             android:id="@+id/img_TeksKeVideo"
-                            android:layout_width="180dp"
-                            android:layout_height="48dp"
-                            android:layout_marginBottom="8dp"
-                            android:paddingTop="12dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_teks_ke_video" />
-
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/tekskeisyarat" />
                         <TextView
                             android:id="@+id/txt_TeksKeVideo"
                             android:layout_width="180dp"
@@ -110,7 +94,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:text="Teks Ke Video"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -120,7 +104,7 @@
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
                             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
-                            android:textSize="11dp" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -128,8 +112,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/PenerjemahanIsyarat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="170dp"
+                    android:layout_height="250dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="2dp"
@@ -137,23 +121,22 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    android:padding="4dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="1dp">
+                    app:cardElevation="8dp"
+                    android:layout_marginLeft="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
 
                         <ImageView
                             android:id="@+id/img_PenerjemahanIsyarat"
-                            android:layout_width="180dp"
-                            android:layout_height="48dp"
-                            android:layout_marginBottom="8dp"
-                            android:paddingTop="12dp"
-                            android:paddingBottom="4dp"
-                            android:src="@drawable/ic_teks_ke_video" />
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:src="@drawable/deteksiisyarat" />
 
                         <TextView
                             android:id="@+id/txt_PenerjemahanIsyarat"
@@ -162,7 +145,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:text="Penerjemahan Isyarat"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -172,62 +155,69 @@
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
                             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
-                            android:textSize="11dp" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/MateriEdukasi"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="12dp"
-                android:clipToPadding="false"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="1dp"
-                app:cardUseCompatPadding="true">
+                android:layout_height="125dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MateriEdukasi"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="95dp"
+                    android:layout_margin="23dp"
+                    app:cardElevation="8dp">
 
-                    <ImageView
-                        android:id="@+id/img_MateriEdukasi"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginBottom="8dp"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="4dp"
-                        android:src="@drawable/ic_teks_ke_video" />
-
-                    <TextView
-                        android:id="@+id/txt_materiedukasi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_bold"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
                         android:gravity="center"
-                        android:text="Materi Edukasi"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:padding="8dp">
 
-                    <TextView
-                        android:id="@+id/desc_materiedukasi"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:fontFamily="@font/poppins_light"
-                        android:gravity="center|top"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
-                        android:textSize="12dp" />
+                        <ImageView
+                            android:id="@+id/img_MateriEdukasi"
+                            android:layout_width="35dp"
+                            android:layout_height="65dp"
+                            android:src="@drawable/edukasi"
+                            android:layout_gravity="center_vertical"/>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp"
+                            android:gravity="center_vertical">
 
+                            <TextView
+                                android:id="@+id/txt_materiedukasi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_bold"
+                                android:text="Materi Edukasi"
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/desc_materiedukasi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_light"
+                                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                android:textSize="12sp"
+                                android:maxLines="2"
+                                android:ellipsize="end"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+          </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 <!--    <LinearLayout-->

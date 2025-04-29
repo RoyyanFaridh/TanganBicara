@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tangan Bicara</string>
+    <string name="underline_main"><u>Selamat Datang!</u></string>
+    <string name="underline_edukasi"><u>Edukasi</u></string>
 </resources>

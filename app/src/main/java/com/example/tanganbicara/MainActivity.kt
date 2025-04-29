@@ -27,5 +27,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PenerjemahanIsyarat::class.java)
             startActivity(intent)
         }
+
+        val cardMateriEdukasi = findViewById<CardView>(R.id.MateriEdukasi)
+        cardMateriEdukasi.setOnClickListener {
+            val intent = Intent(this, MateriEdukasi::class.java)
+            startActivity(intent)
+        }
+
     }
 }
