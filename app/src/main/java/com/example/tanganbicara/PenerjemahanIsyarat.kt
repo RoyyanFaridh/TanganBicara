@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.content.ContextCompat
 import android.view.View
 import android.content.Intent
+import android.view.WindowManager
+import android.provider.Settings
 
 //Camera
 import androidx.camera.core.CameraSelector
@@ -33,6 +35,7 @@ class PenerjemahanIsyarat : AppCompatActivity() {
     private var camera: Camera? = null // Gunakan nullable untuk kamera
     private lateinit var cameraProvider: ProcessCameraProvider
     private var flashEnabled = false   // Untuk melacak status flash
+    private var initialBrightness: Float = -1f
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,20 +122,34 @@ class PenerjemahanIsyarat : AppCompatActivity() {
     }
 
     private fun toggleCamera() {
-        // Ganti antara kamera depan dan belakang
-        currentCameraSelector = if (currentCameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
-            CameraSelector.DEFAULT_FRONT_CAMERA
-        } else {
+        val wasFront = currentCameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA
+
+        // Ganti selector
+        currentCameraSelector = if (wasFront) {
             CameraSelector.DEFAULT_BACK_CAMERA
+        } else {
+            CameraSelector.DEFAULT_FRONT_CAMERA
         }
 
-        // Tambahkan pengecekan apakah cameraProvider sudah siap
+        // Matikan flash jika sebelumnya kamera depan
+        if (wasFront && flashEnabled) {
+            simulateScreenFlash(false)
+            flashEnabled = false
+        }
+
+        // Matikan torch jika sebelumnya kamera belakang dan torch menyala
+        if (!wasFront && flashEnabled) {
+            camera?.cameraControl?.enableTorch(false)
+            flashEnabled = false
+        }
+
         if (::cameraProvider.isInitialized) {
             bindCameraUseCases()
         } else {
             Toast.makeText(this, "Kamera belum siap", Toast.LENGTH_SHORT).show()
         }
     }
+
 
 
     override fun onRequestPermissionsResult(
@@ -152,6 +169,19 @@ class PenerjemahanIsyarat : AppCompatActivity() {
         }
     }
 
+    // Fungsi untuk mengatur brightness
+    private fun setScreenBrightness(brightness: Float) {
+        val layoutParams = window.attributes
+        layoutParams.screenBrightness = brightness
+        window.attributes = layoutParams
+    }
+
+    // Fungsi untuk mendapatkan brightness awal
+    private fun getInitialBrightness(): Float {
+        // Ambil nilai brightness awal dari settings sistem
+        return Settings.System.getFloat(contentResolver, Settings.System.SCREEN_BRIGHTNESS, 0f)
+    }
+
     private fun toggleFlash() {
         val hasFlash = camera?.cameraInfo?.hasFlashUnit() ?: false
         val isFront = currentCameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA
@@ -159,7 +189,16 @@ class PenerjemahanIsyarat : AppCompatActivity() {
         flashEnabled = !flashEnabled
 
         if (isFront) {
-            simulateScreenFlash(flashEnabled)
+            if (flashEnabled) {
+                // Mencatat brightness saat ini sebelum mengubahnya
+                initialBrightness = getInitialBrightness()
+                setScreenBrightness(1.0f)  // Set ke 100% untuk flash
+                simulateScreenFlash(true)
+            } else {
+                // Mengembalikan brightness ke nilai awal setelah matikan flash
+                setScreenBrightness(initialBrightness)
+                simulateScreenFlash(false)
+            }
         } else if (hasFlash) {
             camera?.cameraControl?.enableTorch(flashEnabled)
         } else {
@@ -170,10 +209,10 @@ class PenerjemahanIsyarat : AppCompatActivity() {
     private fun simulateScreenFlash(enable: Boolean) {
         val screenFlashOverlay = findViewById<View>(R.id.screenFlashOverlay)
 
-        // Pastikan kode berjalan di UI thread
         runOnUiThread {
             if (enable) {
                 Log.d("ScreenFlash", "Enabling screen flash")
+                setScreenBrightness(1f) // brightness 100%
                 screenFlashOverlay.apply {
                     alpha = 1f
                     visibility = View.VISIBLE
@@ -181,6 +220,7 @@ class PenerjemahanIsyarat : AppCompatActivity() {
                 }
             } else {
                 Log.d("ScreenFlash", "Disabling screen flash")
+                setScreenBrightness(WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE) // kembali ke default user
                 screenFlashOverlay.animate()
                     .alpha(0f)
                     .setDuration(300)
@@ -192,4 +232,5 @@ class PenerjemahanIsyarat : AppCompatActivity() {
             }
         }
     }
+
 }
