@@ -16,6 +16,7 @@ import android.view.View
 import android.content.Intent
 import android.view.WindowManager
 import android.provider.Settings
+import android.widget.ImageButton
 
 //Camera
 import androidx.camera.core.CameraSelector
@@ -71,7 +72,8 @@ class PenerjemahanIsyarat : AppCompatActivity() {
             toggleFlash()
         }
 
-        val backButton = findViewById<CardView>(R.id.btn_backPenerjemahanIsyarat)
+        val backButton = findViewById<ImageButton>(R.id.btn_backPenerjemahanIsyarat)
+        backButton.imageTintList = null // Menghapus warna default dari gambarbutton.imageTintList = null
 
         backButton.setOnClickListener {
             // Balik ke halaman home (bisa MainActivity atau yang lain)

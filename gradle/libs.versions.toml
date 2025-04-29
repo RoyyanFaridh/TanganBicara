@@ -28,4 +28,3 @@ camerax-view = { module = "androidx.camera:camera-view", version.ref = "camerax"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-

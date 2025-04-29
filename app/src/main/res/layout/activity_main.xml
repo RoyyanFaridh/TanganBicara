@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold_italic"
             android:textColor="#007BFF"
-            android:textSize="50sp"
-            android:lineSpacingExtra="-17dp"
+            android:textSize="54sp"
+            android:lineSpacingExtra="-16dp"
             android:text="@string/underline_main"/>
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_light"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa. Donec finibus finibus risus,"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -60,7 +60,7 @@
 
             <LinearLayout
                 android:layout_width="397dp"
-                android:layout_height="280dp"
+                android:layout_height="270dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_height="250dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:text="Teks Ke Video"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -104,7 +104,7 @@
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
                             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
@@ -121,7 +121,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardElevation="8dp"
+                    app:cardElevation="2dp"
                     android:layout_marginLeft="5dp">
 
                     <LinearLayout
@@ -140,12 +140,12 @@
 
                         <TextView
                             android:id="@+id/txt_PenerjemahanIsyarat"
-                            android:layout_width="180dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
                             android:gravity="center"
                             android:text="Penerjemahan Isyarat"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -155,7 +155,7 @@
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
                             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -163,7 +163,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -172,7 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="95dp"
                     android:layout_margin="23dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -201,7 +201,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_bold"
                                 android:text="Materi Edukasi"
-                                android:textSize="14sp"
+                                android:textSize="16sp"
                                 android:textStyle="bold"/>
 
                             <TextView
@@ -210,7 +210,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_light"
                                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 android:maxLines="2"
                                 android:ellipsize="end"/>
                         </LinearLayout>
@@ -220,16 +220,21 @@
           </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="44dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        tools:layout_editor_absoluteY="688dp">-->
 
-<!--    </LinearLayout>-->
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="28dp"
+        app:itemRippleColor="@color/ripple_color"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
