@@ -1,4 +1,4 @@
-package com.example.tanganbicara
+package com.example.tanganbicara.features.main
 
 import android.os.Bundle
 import android.content.Intent
@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.cardview.widget.CardView
+import com.example.tanganbicara.features.penerjemahanisyarat.PenerjemahanIsyarat
+import com.example.tanganbicara.R
+import com.example.tanganbicara.features.materiedukasi.MateriEdukasiActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val cardMateriEdukasi = findViewById<CardView>(R.id.MateriEdukasi)
         cardMateriEdukasi.setOnClickListener {
-            val intent = Intent(this, MateriEdukasi::class.java)
+            val intent = Intent(this, MateriEdukasiActivity::class.java)
             startActivity(intent)
         }
 

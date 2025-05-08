@@ -1,10 +1,9 @@
-package com.example.tanganbicara
+package com.example.tanganbicara.features.penerjemahanisyarat
 
 import android.Manifest
 import android.util.Log
 import android.os.Bundle
 import android.widget.Toast
-import android.widget.FrameLayout
 import android.content.pm.PackageManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,9 +23,9 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.camera.core.Camera
-import androidx.camera.core.CameraInfo
-import androidx.camera.core.CameraControl
 import androidx.cardview.widget.CardView
+import com.example.tanganbicara.R
+import com.example.tanganbicara.features.main.MainActivity
 
 
 class PenerjemahanIsyarat : AppCompatActivity() {
@@ -91,6 +90,7 @@ class PenerjemahanIsyarat : AppCompatActivity() {
 
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
+            // Mendapatkan cameraProvider secara langsung, tidak perlu safe call
             cameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder().build().also {
@@ -98,14 +98,16 @@ class PenerjemahanIsyarat : AppCompatActivity() {
             }
 
             try {
-                cameraProvider?.unbindAll() // Unbind dulu biar gak bentrok
-                camera = cameraProvider?.bindToLifecycle(this, currentCameraSelector, preview)
+                // Memanggil unbindAll dan bindToLifecycle tanpa safe call karena cameraProvider sudah pasti non-null
+                cameraProvider.unbindAll() // Unbind dulu biar gak bentrok
+                camera = cameraProvider.bindToLifecycle(this, currentCameraSelector, preview)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
 
         }, ContextCompat.getMainExecutor(this))
     }
+
 
 
     private fun bindCameraUseCases() {

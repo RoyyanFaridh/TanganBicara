@@ -1,10 +1,11 @@
-package com.example.tanganbicara
+package com.example.tanganbicara.features.tekskevideo
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.tanganbicara.R
 
 class TeksKeVideo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
