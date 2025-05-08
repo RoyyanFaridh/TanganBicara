@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 // Menandai kelas ini sebagai entitas yang akan digunakan dalam Room Database
 @Entity(tableName = "materi_edukasi")
-data class MateriEdukasi(
+data class MateriEdukasiEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0, // ID otomatis
     val judul: String, // Judul materi edukasi
     val jumlahMateri: Int, // Jumlah materi dalam paket edukasi

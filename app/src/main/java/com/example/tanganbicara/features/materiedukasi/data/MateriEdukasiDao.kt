@@ -11,23 +11,23 @@ interface MateriEdukasiDao {
 
     // Menambahkan materi edukasi baru ke dalam database
     @Insert
-    suspend fun insert(materiEdukasi: MateriEdukasi)
+    suspend fun insert(materiEdukasi: MateriEdukasiEntity)
 
     // Menambahkan beberapa materi edukasi sekaligus
     @Insert
-    suspend fun insertAll(materiList: List<MateriEdukasi>)
+    suspend fun insertAll(materiList: List<MateriEdukasiEntity>)
 
     // Mengambil semua materi edukasi dari database
     @Query("SELECT * FROM materi_edukasi")
-    fun getAllMateri(): LiveData<List<MateriEdukasi>>
+    fun getAllMateri(): LiveData<List<MateriEdukasiEntity>>
 
     // Mengambil materi edukasi berdasarkan ID
     @Query("SELECT * FROM materi_edukasi WHERE id = :id")
-    fun getMateriById(id: Int): LiveData<MateriEdukasi>
+    fun getMateriById(id: Int): LiveData<MateriEdukasiEntity>
 
     // Mengupdate data materi edukasi
     @Update
-    suspend fun update(materiEdukasi: MateriEdukasi)
+    suspend fun update(materiEdukasi: MateriEdukasiEntity)
 
     // Menghapus materi edukasi berdasarkan ID
     @Query("DELETE FROM materi_edukasi WHERE id = :id")
@@ -36,4 +36,8 @@ interface MateriEdukasiDao {
     // Menghapus semua materi edukasi
     @Query("DELETE FROM materi_edukasi")
     suspend fun deleteAll()
+
+    // Untuk cek apakah database kosong (dipakai insert dummy)
+    @Query("SELECT COUNT(*) FROM materi_edukasi")
+    suspend fun getCount(): Int
 }

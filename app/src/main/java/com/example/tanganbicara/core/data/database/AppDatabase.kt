@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // Tentukan entitas yang akan digunakan dalam database, serta versi database
-@Database(entities = [MateriEdukasi::class], version = 1, exportSchema = false)
+@Database(entities = [MateriEdukasiEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     // Tentukan DAO yang akan digunakan untuk mengakses database
