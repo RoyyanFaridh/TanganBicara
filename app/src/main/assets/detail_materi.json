@@ -1,0 +1,24 @@
+[
+  {
+    "materiId": 1,
+    "isi": [
+      {
+        "judulSub": "Submateri 1",
+        "konten": "Ini isi submateri 1"
+      },
+      {
+        "judulSub": "Submateri 2",
+        "konten": "Ini isi submateri 2"
+      }
+    ]
+  },
+  {
+    "materiId": 2,
+    "isi": [
+      {
+        "judulSub": "Submateri A",
+        "konten": "Ini isi submateri A"
+      }
+    ]
+  }
+]

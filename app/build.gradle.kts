@@ -64,4 +64,7 @@ dependencies {
     kapt(libs.room.compiler)            // Room annotation processor (use kapt for Room)
     implementation(libs.room.ktx)        // Room Kotlin extensions
     testImplementation(libs.room.testing)
+
+    //Json
+    implementation(libs.gson)
 }

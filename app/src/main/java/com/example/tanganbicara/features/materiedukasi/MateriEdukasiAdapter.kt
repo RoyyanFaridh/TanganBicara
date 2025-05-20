@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tanganbicara.databinding.ItemMateriEdukasiBinding
 import com.example.tanganbicara.features.materiedukasi.data.MateriEdukasiEntity
 
-class MateriEdukasiAdapter(private var materiList: List<MateriEdukasiEntity>) :
-    RecyclerView.Adapter<MateriEdukasiAdapter.MateriViewHolder>() {
+class MateriEdukasiAdapter(
+    private val onItemClick: (MateriEdukasiEntity) -> Unit
+) : ListAdapter<MateriEdukasiEntity, MateriEdukasiAdapter.MateriViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MateriViewHolder {
         val binding = ItemMateriEdukasiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,16 +18,8 @@ class MateriEdukasiAdapter(private var materiList: List<MateriEdukasiEntity>) :
     }
 
     override fun onBindViewHolder(holder: MateriViewHolder, position: Int) {
-        val materi = materiList[position]
+        val materi = getItem(position)
         holder.bind(materi)
-    }
-
-    override fun getItemCount(): Int = materiList.size
-
-    // Update data tanpa membuat instance baru adapter
-    fun updateData(newData: List<MateriEdukasiEntity>) {
-        materiList = newData
-        notifyDataSetChanged() // Memanggil perubahan data pada RecyclerView
     }
 
     inner class MateriViewHolder(private val binding: ItemMateriEdukasiBinding) :
@@ -37,6 +30,20 @@ class MateriEdukasiAdapter(private var materiList: List<MateriEdukasiEntity>) :
             binding.textJumlah.text = "${materi.jumlahMateri} Materi"
             binding.progressMateri.progress = materi.progress
             binding.imageMateri.setImageResource(materi.gambarResId)
+
+            binding.root.setOnClickListener {
+                onItemClick(materi)
+            }
+        }
+    }
+
+    class DiffCallback : DiffUtil.ItemCallback<MateriEdukasiEntity>() {
+        override fun areItemsTheSame(oldItem: MateriEdukasiEntity, newItem: MateriEdukasiEntity): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: MateriEdukasiEntity, newItem: MateriEdukasiEntity): Boolean {
+            return oldItem == newItem
         }
     }
 }
