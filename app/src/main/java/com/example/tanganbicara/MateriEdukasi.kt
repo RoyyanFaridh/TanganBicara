@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.widget.ImageButton
+import androidx.cardview.widget.CardView
 
 class MateriEdukasi : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,17 +13,19 @@ class MateriEdukasi : AppCompatActivity() {
 
         // Temukan tombol setelah setContentView dipanggil
         val backButton = findViewById<ImageButton>(R.id.btn_backEdukasi)
-
-        // Hapus tint default
         backButton.imageTintList = null
-
-        // Set click listener untuk tombol back
         backButton.setOnClickListener {
-            // Balik ke halaman home (bisa MainActivity atau yang lain)
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            finish() // Tutup activity sekarang biar gak numpuk
+            finish()
+
+        }
+
+        val cardEdukasiSubab = findViewById<CardView>(R.id.EdukasiSubab)
+        cardEdukasiSubab.setOnClickListener {
+            val intent = Intent(this, EdukasiSubab::class.java)
+            startActivity(intent)
         }
     }
 }
