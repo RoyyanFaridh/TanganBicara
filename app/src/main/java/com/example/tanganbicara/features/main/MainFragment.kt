@@ -6,16 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
-import androidx.cardview.widget.CardView
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.tanganbicara.R
 import com.example.tanganbicara.databinding.FragmentMainBinding
 import com.example.tanganbicara.features.materiedukasi.MateriEdukasiActivity
-import com.example.tanganbicara.features.materiedukasi.MateriEdukasiFragment
 import com.example.tanganbicara.features.penerjemahanisyarat.PenerjemahanIsyarat
-import com.example.tanganbicara.features.penerjemahanisyarat.PenerjemahanIsyaratFragment
-import com.example.tanganbicara.features.tekskevideo.TeksKeVideoFragment
 
 class MainFragment : Fragment() {
 
