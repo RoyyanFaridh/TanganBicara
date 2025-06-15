@@ -32,19 +32,19 @@ class DetailMateriActivity : AppCompatActivity() {
                 if (materi != null) {
                     findViewById<TextView>(R.id.textJudulDetail).text = materi.judul
                     findViewById<TextView>(R.id.textJumlahDetail).text = "${materi.jumlahMateri} Materi"
-                    findViewById<ProgressBar>(R.id.progressDetail).progress = materi.progress
                     findViewById<ImageView>(R.id.imageDetail).setImageResource(materi.gambarResId)
+
+                    // 👇 Pindahkan ke dalam blok ini
+                    lifecycleScope.launch {
+                        val detail = loadDetailMateriFromJson(materi.materiJsonId)
+                        val kontenTextView = findViewById<TextView>(R.id.textKontenDetail)
+                        kontenTextView.text = detail?.isi?.joinToString("\n\n") {
+                            "• ${it.judulSub}\n${it.konten}"
+                        } ?: "Konten tidak ditemukan."
+                    }
                 }
             }
 
-            // Load JSON di coroutine
-            lifecycleScope.launch {
-                val detail = loadDetailMateriFromJson(materiId)
-                val kontenTextView = findViewById<TextView>(R.id.textKontenDetail)
-                kontenTextView.text = detail?.isi?.joinToString("\n\n") { subMateri ->
-                    "• ${subMateri.judulSub}\n${subMateri.konten}"
-                } ?: "Konten tidak ditemukan."
-            }
         }
     }
 

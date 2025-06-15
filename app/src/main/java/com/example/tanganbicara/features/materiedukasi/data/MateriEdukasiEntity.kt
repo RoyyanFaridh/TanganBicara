@@ -10,5 +10,6 @@ data class MateriEdukasiEntity(
     val judul: String, // Judul materi edukasi
     val jumlahMateri: Int, // Jumlah materi dalam paket edukasi
     val progress: Int, // Progress dari materi edukasi dalam bentuk angka (misal: 40%)
-    val gambarResId: Int // Resource ID untuk gambar yang ditampilkan (contoh: gambar ikon)
+    val gambarResId: Int, // Resource ID untuk gambar yang ditampilkan (contoh: gambar ikon)
+    val materiJsonId: Int
 )

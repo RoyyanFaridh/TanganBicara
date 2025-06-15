@@ -87,7 +87,8 @@ class MateriEdukasiActivity : AppCompatActivity() {
                     judul = it.judul,
                     jumlahMateri = it.jumlahMateri,
                     progress = it.progress,
-                    gambarResId = resId
+                    gambarResId = resId,
+                    materiJsonId = it.id // ← penting!
                 )
             }
 

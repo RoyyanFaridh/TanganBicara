@@ -6,25 +6,24 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 // Tentukan entitas yang akan digunakan dalam database, serta versi database
-@Database(entities = [MateriEdukasiEntity::class], version = 1, exportSchema = false)
+@Database(entities = [MateriEdukasiEntity::class], version = 2, exportSchema = false) // versi naik
 abstract class AppDatabase : RoomDatabase() {
 
-    // Tentukan DAO yang akan digunakan untuk mengakses database
     abstract fun materiEdukasiDao(): MateriEdukasiDao
 
-    // Singleton pattern untuk mendapatkan instance database
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        // Fungsi untuk mendapatkan instance database
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "materi_edukasi_database" // Nama database
-                ).build()
+                    "materi_edukasi_database"
+                )
+                    .fallbackToDestructiveMigration() // reset DB kalau versi berubah
+                    .build()
                 INSTANCE = instance
                 instance
             }

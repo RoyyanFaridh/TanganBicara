@@ -20,5 +20,14 @@
         "konten": "Ini isi submateri A"
       }
     ]
+  },
+  {
+    "materiId": 3,
+    "isi": [
+      {
+        "judulSub": "Submateri A",
+        "konten": "Ini isi submateri A"
+      }
+    ]
   }
 ]
