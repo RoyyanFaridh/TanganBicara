@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="231dp">
+
+            <!-- Gambar di background -->
+            <ImageView
+                android:id="@+id/backgroundImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/deteksiisyarat"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Tombol Back di atas gambar -->
+            <!-- Tombol Kembali -->
+            <ImageButton
+                android:id="@+id/btn_backEdukasi"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_circle"
+                android:contentDescription="Back"
+                android:elevation="1dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_buttonback"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@null" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/txtBreadcrumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edukasi > Pengenalan Bahasa Isyarat"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:textColor="#888888"
+                android:layout_marginTop="24dp"/>
+
+            <TextView
+                android:id="@+id/txtJudul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pengenalan Bahasa Isyarat"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#337AFF"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/txtJumlahMateri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Materi"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp"
+                android:textColor="#000000" />
+
+            <!-- Deskripsi -->
+            <TextView
+                android:id="@+id/txtDeskripsiLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:fontFamily="@font/poppins_bold"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:id="@+id/txtDeskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa. Donec finibus finibus risus, vel tempus nunc suscipit sit amet. Duis lobortis sed urna vitae mattis."
+                android:fontFamily="@font/poppins_light"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:textColor="#444444" />
+
+            <!-- Label Materi -->
+            <TextView
+                android:id="@+id/txtMateriLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Materi"
+                android:fontFamily="@font/poppins_bold"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp" />
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/EdukasiMateri"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:cardCornerRadius="8dp"-->
+<!--                app:cardElevation="4dp"-->
+<!--                app:cardUseCompatPadding="true">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="48dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:layout_marginEnd="12dp"-->
+<!--                    android:background="@android:color/darker_gray"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/ic_launcher_foreground" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/poppins_regular"-->
+<!--                        android:text="Materi 1"-->
+<!--                        android:textSize="12sp" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/poppins_bold"-->
+<!--                        android:text="Bahasa Isyarat Huruf"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textStyle="bold" />-->
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/EdukasiMateri"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginVertical="8dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="4dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/imageMateri"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@color/design_default_color_background"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_foreground" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textJumlah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Materi 1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="#666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textJudul"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="Pengenalan Bahasa Isyarat"
+                            android:textColor="#000000"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/poppins_bold"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!-- Tambahkan 4 blok di atas lagi sesuai jumlah materi (5 Materi) -->
+
+    </ScrollView>
