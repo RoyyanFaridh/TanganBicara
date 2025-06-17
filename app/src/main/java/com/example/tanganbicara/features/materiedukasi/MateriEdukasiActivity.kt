@@ -30,6 +30,7 @@ class MateriEdukasiActivity : AppCompatActivity() {
         setContentView(R.layout.activity_materi_edukasi)
 
         // Status bar putih
+        @Suppress("DEPRECATION")
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
 

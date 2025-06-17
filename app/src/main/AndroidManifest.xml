@@ -20,7 +20,7 @@
             android:name=".features.tekskevideo.TeksKeVideo"
             android:exported="false" />
         <activity
-            android:name=".features.materiedukasi.MateriEdukasiActivity"
+            android:name=".MateriEdukasi"
             android:exported="false" />
         <activity android:name=".features.materiedukasi.DetailMateriActivity"
             android:exported="false" />

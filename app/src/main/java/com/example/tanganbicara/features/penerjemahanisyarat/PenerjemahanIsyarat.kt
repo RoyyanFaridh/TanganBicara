@@ -48,6 +48,12 @@ class PenerjemahanIsyarat : AppCompatActivity() {
     private lateinit var imageAnalyzer: ImageAnalysis
     private lateinit var gestureRecognizer: GestureRecognizer
     private val executor = Executors.newSingleThreadExecutor()
+    private val gestureBuffer = StringBuilder()
+    private var lastGesture: String? = null
+    private var lastGestureTimestamp = 0L
+    private val gestureTimeout = 1500L
+    private val detectDelay = 2000L
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,16 +149,37 @@ class PenerjemahanIsyarat : AppCompatActivity() {
                 val gestureText = if (gestureCategory != null && gestureCategory.score() > 0.5) {
                     gestureCategory.categoryName()
                 } else {
-                    "Tidak dikenali"
+                    null
                 }
 
                 runOnUiThread {
-                    findViewById<TextView>(R.id.txt_terjemahan).text = gestureText
+                    val currentTime = System.currentTimeMillis()
+
+                    if (gestureText == null || gestureText == "Tidak dikenali") {
+                        if (currentTime - lastGestureTimestamp > gestureTimeout) {
+                            gestureBuffer.clear()
+                            findViewById<TextView>(R.id.txt_terjemahan).text = ""
+                            lastGesture = null
+                        }
+                    } else {
+                        // Cek apakah delay sudah terpenuhi sebelum menambahkan gesture baru
+                        if (gestureText != lastGesture && currentTime - lastGestureTimestamp >= detectDelay) {
+                            if (gestureBuffer.isNotEmpty()) {
+                                gestureBuffer.append(" ")
+                            }
+                            gestureBuffer.append(gestureText)
+                            findViewById<TextView>(R.id.txt_terjemahan).text = gestureBuffer.toString()
+                            lastGesture = gestureText
+                            lastGestureTimestamp = currentTime
+                        } else if (gestureText == lastGesture) {
+                            // Update timestamp supaya buffer tidak di-clear
+                            lastGestureTimestamp = currentTime
+                        }
+                        // Jika delay belum terpenuhi dan gesture berbeda, abaikan dulu (tidak ditambahkan)
+                    }
                 }
             }
-
             .build()
-
         gestureRecognizer = GestureRecognizer.createFromOptions(this, options)
     }
 
