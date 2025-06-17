@@ -17,16 +17,18 @@
         android:theme="@style/Theme.TanganBicara"
         tools:targetApi="31">
         <activity
-            android:name=".TeksKeVideo"
+            android:name=".features.tekskevideo.TeksKeVideo"
             android:exported="false" />
         <activity
-            android:name=".MateriEdukasi"
+            android:name=".features.materiedukasi.MateriEdukasiActivity"
+            android:exported="false" />
+        <activity android:name=".features.materiedukasi.DetailMateriActivity"
             android:exported="false" />
         <activity
-            android:name=".PenerjemahanIsyarat"
+            android:name=".features.penerjemahanisyarat.PenerjemahanIsyarat"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".features.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
