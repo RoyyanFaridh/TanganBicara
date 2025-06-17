@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("kapt") // Add Kapt plugin here
+    id("kotlin-parcelize")
+    kotlin("kapt")
 }
 
 android {
@@ -18,9 +19,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    aaptOptions {
+        noCompress += "tflite"
+        noCompress += "task"
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,27 +50,37 @@ android {
 }
 
 dependencies {
+    // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
-    // CameraX dependencies
+    // CameraX (untuk input video gesture)
     implementation(libs.camerax.core)
     implementation(libs.camerax.camera2)
     implementation(libs.camerax.lifecycle)
     implementation(libs.camerax.view)
 
-    // Room dependencies
-    implementation(libs.room.runtime)    // Room runtime
-    kapt(libs.room.compiler)            // Room annotation processor (use kapt for Room)
-    implementation(libs.room.ktx)        // Room Kotlin extensions
+    // Room (untuk fitur materi edukasi)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
+    implementation(libs.room.ktx)
     testImplementation(libs.room.testing)
 
-    //Json
+    // Gson (untuk fitur edukasi)
     implementation(libs.gson)
+
+    // TensorFlow Lite + MediaPipe Task (untuk gesture recognition)
+    implementation(libs.tflite)
+    implementation(libs.tflite.support)
+    implementation(libs.tflite.task.vision)
+    implementation(libs.mediapipe.tasks.vision)
+
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
+

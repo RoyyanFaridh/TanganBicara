@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.widget.ImageButton
 import androidx.cardview.widget.CardView
+import com.example.tanganbicara.features.main.MainActivity
 
 class MateriEdukasi : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

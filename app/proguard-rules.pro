@@ -19,3 +19,31 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# =======================
+# MediaPipe + TensorFlow Lite
+# =======================
+
+# Jaga class MediaPipe Tasks tetap utuh
+-keep class com.google.mediapipe.** { *; }
+-keep class org.tensorflow.** { *; }
+
+# Hindari masalah refleksi
+-keepclassmembers class * {
+    @com.google.mediapipe.tasks.annotation.UsedByNative <methods>;
+    @com.google.mediapipe.tasks.annotation.UsedByReflection <fields>;
+    @com.google.mediapipe.tasks.annotation.UsedByReflection <methods>;
+}
+
+
+# Hindari menghapus anotasi penting
+-keepattributes *Annotation*
+
+# Jangan obfuscate class-model dari TFLite
+-keep class org.tensorflow.lite.task.** { *; }
+
+# Untuk CameraX (jika shrink mode aktif)
+-keep class androidx.camera.** { *; }
+
+# Optional: untuk debugging
+-keepattributes SourceFile,LineNumberTable

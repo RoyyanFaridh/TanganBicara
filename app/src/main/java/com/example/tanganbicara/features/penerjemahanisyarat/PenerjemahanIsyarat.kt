@@ -1,189 +1,198 @@
 package com.example.tanganbicara.features.penerjemahanisyarat
 
 import android.Manifest
-import android.util.Log
-import android.os.Bundle
-import android.widget.Toast
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.*
+import android.os.Bundle
+import android.provider.Settings
+import android.view.View
+import android.view.WindowManager
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.content.ContextCompat
-import android.view.View
-import android.content.Intent
-import android.view.WindowManager
-import android.provider.Settings
-import android.widget.ImageButton
-
-//Camera
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.camera.core.Camera
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.tanganbicara.R
 import com.example.tanganbicara.features.main.MainActivity
-
+import com.google.mediapipe.tasks.core.BaseOptions
+import com.google.mediapipe.framework.image.BitmapImageBuilder
+import com.google.mediapipe.framework.image.MPImage
+import com.google.mediapipe.tasks.core.TaskResult
+import androidx.camera.core.Camera
+import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizer
+import com.google.mediapipe.tasks.vision.gesturerecognizer.GestureRecognizerResult
+import com.google.mediapipe.tasks.vision.core.RunningMode
+import java.io.ByteArrayOutputStream
+import java.util.concurrent.Executors
 
 class PenerjemahanIsyarat : AppCompatActivity() {
 
-    private val CAMERA_PERMISSION_REQUEST_CODE = 100
-    private var currentCameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var camera: Camera? = null // Gunakan nullable untuk kamera
-    private lateinit var cameraProvider: ProcessCameraProvider
-    private var flashEnabled = false   // Untuk melacak status flash
-    private var initialBrightness: Float = -1f
+    companion object {
+        private const val CAMERA_PERMISSION_REQUEST_CODE = 100
+    }
 
+    private var currentCameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var camera: Camera? = null
+    private lateinit var cameraProvider: ProcessCameraProvider
+    private var flashEnabled = false
+    private var initialBrightness: Float = -1f
+    private lateinit var imageAnalyzer: ImageAnalysis
+    private lateinit var gestureRecognizer: GestureRecognizer
+    private val executor = Executors.newSingleThreadExecutor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_penerjemahan_isyarat)
+
+        setupEdgeInsets()
+        checkCameraPermission()
+        setupButtonListeners()
+    }
+
+    private fun setupEdgeInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
 
+    private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
-            // Meminta izin kamera
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.CAMERA),
                 CAMERA_PERMISSION_REQUEST_CODE
             )
         } else {
-            // Jika izin sudah diberikan, setup kamera
-            setupCamera()
+            startCameraAndRecognizer()
         }
+    }
 
-        // Tombol untuk mengganti kamera
-        findViewById<CardView>(R.id.switchCameraButton).setOnClickListener {
-            toggleCamera()
+    private fun startCameraAndRecognizer() {
+        setupCamera()
+        setupGestureRecognizer()
+    }
+
+    private fun setupButtonListeners() {
+        findViewById<CardView>(R.id.switchCameraButton).setOnClickListener { toggleCamera() }
+        findViewById<CardView>(R.id.flashCameraButton).setOnClickListener { toggleFlash() }
+        findViewById<ImageButton>(R.id.btn_backPenerjemahanIsyarat).apply {
+            imageTintList = null
+            setOnClickListener {
+                val intent = Intent(this@PenerjemahanIsyarat, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+            }
         }
-
-        val flashButton = findViewById<CardView>(R.id.flashCameraButton)
-        flashButton.setOnClickListener {
-            toggleFlash()
-        }
-
-        val backButton = findViewById<ImageButton>(R.id.btn_backPenerjemahanIsyarat)
-        backButton.imageTintList = null // Menghapus warna default dari gambarbutton.imageTintList = null
-
-        backButton.setOnClickListener {
-            // Balik ke halaman home (bisa MainActivity atau yang lain)
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish() // Tutup activity sekarang biar ga numpuk
-        }
-
-
     }
 
     private fun setupCamera() {
         val previewView = findViewById<PreviewView>(R.id.previewView)
-
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        cameraProviderFuture.addListener({
-            // Mendapatkan cameraProvider secara langsung, tidak perlu safe call
-            cameraProvider = cameraProviderFuture.get()
 
+        cameraProviderFuture.addListener({
+            cameraProvider = cameraProviderFuture.get()
             val preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(previewView.surfaceProvider)
             }
 
+            imageAnalyzer = ImageAnalysis.Builder()
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build().also {
+                    it.setAnalyzer(executor) { imageProxy ->
+                        analyzeImage(imageProxy)
+                    }
+                }
+
             try {
-                // Memanggil unbindAll dan bindToLifecycle tanpa safe call karena cameraProvider sudah pasti non-null
-                cameraProvider.unbindAll() // Unbind dulu biar gak bentrok
-                camera = cameraProvider.bindToLifecycle(this, currentCameraSelector, preview)
+                cameraProvider.unbindAll()
+                camera = cameraProvider.bindToLifecycle(this, currentCameraSelector, preview, imageAnalyzer)
             } catch (e: Exception) {
                 e.printStackTrace()
+                Toast.makeText(this, "Gagal membuka kamera", Toast.LENGTH_SHORT).show()
             }
 
         }, ContextCompat.getMainExecutor(this))
     }
 
+    private fun setupGestureRecognizer() {
+        val baseOptions = BaseOptions.builder()
+            .setModelAssetPath("gesture_recognizer.task")
+            .build()
 
+        val options = GestureRecognizer.GestureRecognizerOptions.builder()
+            .setBaseOptions(baseOptions)
+            .setRunningMode(RunningMode.LIVE_STREAM)
+            .setResultListener { result: GestureRecognizerResult, _ ->
+                val gestureCategory = result.gestures()
+                    .firstOrNull()?.firstOrNull()
 
-    private fun bindCameraUseCases() {
-        val preview = Preview.Builder().build().also {
-            it.setSurfaceProvider(findViewById<PreviewView>(R.id.previewView).surfaceProvider)
-        }
+                val gestureText = if (gestureCategory != null && gestureCategory.score() > 0.5) {
+                    gestureCategory.categoryName()
+                } else {
+                    "Tidak dikenali"
+                }
 
-        // Bind kamera berdasarkan CameraSelector yang sedang aktif
-        try {
-            cameraProvider.unbindAll() // Penting: unbind sebelum bind ulang
-            cameraProvider.bindToLifecycle(this, currentCameraSelector, preview)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(this, "Gagal membuka kamera", Toast.LENGTH_SHORT).show()
-        }
+                runOnUiThread {
+                    findViewById<TextView>(R.id.txt_terjemahan).text = gestureText
+                }
+            }
+
+            .build()
+
+        gestureRecognizer = GestureRecognizer.createFromOptions(this, options)
+    }
+
+    @OptIn(ExperimentalGetImage::class)
+    private fun analyzeImage(imageProxy: ImageProxy) {
+        val bitmap = imageProxyToBitmap(imageProxy)
+        val mpImage: MPImage = BitmapImageBuilder(bitmap).build()
+
+        // Gunakan recognizeAsync karena RunningMode.LIVE_STREAM
+        gestureRecognizer.recognizeAsync(mpImage, imageProxy.imageInfo.timestamp)
+
+        imageProxy.close()
     }
 
     private fun toggleCamera() {
         val wasFront = currentCameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA
+        currentCameraSelector = if (wasFront) CameraSelector.DEFAULT_BACK_CAMERA else CameraSelector.DEFAULT_FRONT_CAMERA
 
-        // Ganti selector
-        currentCameraSelector = if (wasFront) {
-            CameraSelector.DEFAULT_BACK_CAMERA
-        } else {
-            CameraSelector.DEFAULT_FRONT_CAMERA
-        }
-
-        // Matikan flash jika sebelumnya kamera depan
         if (wasFront && flashEnabled) {
             simulateScreenFlash(false)
             flashEnabled = false
-        }
-
-        // Matikan torch jika sebelumnya kamera belakang dan torch menyala
-        if (!wasFront && flashEnabled) {
+        } else if (!wasFront && flashEnabled) {
             camera?.cameraControl?.enableTorch(false)
             flashEnabled = false
         }
 
         if (::cameraProvider.isInitialized) {
-            bindCameraUseCases()
+            setupCamera()
         } else {
             Toast.makeText(this, "Kamera belum siap", Toast.LENGTH_SHORT).show()
         }
     }
 
-
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            CAMERA_PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Izin diberikan, lakukan pengaturan kamera
-                    setupCamera()
-                } else {
-                    // Izin ditolak, beri tahu pengguna
-                    Toast.makeText(this, "Izin Kamera Diperlukan", Toast.LENGTH_SHORT).show()
-                }
-            }
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startCameraAndRecognizer()
+        } else {
+            Toast.makeText(this, "Izin Kamera Diperlukan", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    // Fungsi untuk mengatur brightness
-    private fun setScreenBrightness(brightness: Float) {
-        val layoutParams = window.attributes
-        layoutParams.screenBrightness = brightness
-        window.attributes = layoutParams
-    }
-
-    // Fungsi untuk mendapatkan brightness awal
-    private fun getInitialBrightness(): Float {
-        // Ambil nilai brightness awal dari settings sistem
-        return Settings.System.getFloat(contentResolver, Settings.System.SCREEN_BRIGHTNESS, 0f)
     }
 
     private fun toggleFlash() {
@@ -192,49 +201,81 @@ class PenerjemahanIsyarat : AppCompatActivity() {
 
         flashEnabled = !flashEnabled
 
-        if (isFront) {
-            if (flashEnabled) {
-                // Mencatat brightness saat ini sebelum mengubahnya
+        when {
+            isFront && flashEnabled -> {
                 initialBrightness = getInitialBrightness()
-                setScreenBrightness(1.0f)  // Set ke 100% untuk flash
+                setScreenBrightness(1.0f)
                 simulateScreenFlash(true)
-            } else {
-                // Mengembalikan brightness ke nilai awal setelah matikan flash
+            }
+            isFront && !flashEnabled -> {
                 setScreenBrightness(initialBrightness)
                 simulateScreenFlash(false)
             }
-        } else if (hasFlash) {
-            camera?.cameraControl?.enableTorch(flashEnabled)
-        } else {
-            Toast.makeText(this, "Flash tidak tersedia", Toast.LENGTH_SHORT).show()
+            hasFlash -> {
+                camera?.cameraControl?.enableTorch(flashEnabled)
+            }
+            else -> {
+                Toast.makeText(this, "Flash tidak tersedia", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun simulateScreenFlash(enable: Boolean) {
         val screenFlashOverlay = findViewById<View>(R.id.screenFlashOverlay)
-
         runOnUiThread {
             if (enable) {
-                Log.d("ScreenFlash", "Enabling screen flash")
-                setScreenBrightness(1f) // brightness 100%
                 screenFlashOverlay.apply {
                     alpha = 1f
                     visibility = View.VISIBLE
                     bringToFront()
                 }
             } else {
-                Log.d("ScreenFlash", "Disabling screen flash")
-                setScreenBrightness(WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE) // kembali ke default user
-                screenFlashOverlay.animate()
-                    .alpha(0f)
-                    .setDuration(300)
-                    .withEndAction {
-                        screenFlashOverlay.visibility = View.GONE
-                        Log.d("ScreenFlash", "Screen flash disabled")
-                    }
-                    .start()
+                screenFlashOverlay.animate().alpha(0f).setDuration(300).withEndAction {
+                    screenFlashOverlay.visibility = View.GONE
+                }.start()
             }
         }
     }
 
+    private fun setScreenBrightness(brightness: Float) {
+        val layoutParams = window.attributes
+        layoutParams.screenBrightness = brightness
+        window.attributes = layoutParams
+    }
+
+    private fun getInitialBrightness(): Float {
+        return Settings.System.getFloat(contentResolver, Settings.System.SCREEN_BRIGHTNESS, 0f)
+    }
+
+    private fun imageProxyToBitmap(image: ImageProxy): Bitmap {
+        val yBuffer = image.planes[0].buffer
+        val uBuffer = image.planes[1].buffer
+        val vBuffer = image.planes[2].buffer
+
+        val ySize = yBuffer.remaining()
+        val uSize = uBuffer.remaining()
+        val vSize = vBuffer.remaining()
+
+        val nv21 = ByteArray(ySize + uSize + vSize)
+        yBuffer.get(nv21, 0, ySize)
+        vBuffer.get(nv21, ySize, vSize)
+        uBuffer.get(nv21, ySize + vSize, uSize)
+
+        val yuvImage = YuvImage(nv21, ImageFormat.NV21, image.width, image.height, null)
+        val out = ByteArrayOutputStream()
+        yuvImage.compressToJpeg(Rect(0, 0, image.width, image.height), 100, out)
+        val jpegBytes = out.toByteArray()
+
+        val bitmap = BitmapFactory.decodeByteArray(jpegBytes, 0, jpegBytes.size)
+
+        val matrix = Matrix()
+        // Rotasi 90 derajat (sesuaikan dengan orientasi kamera)
+        matrix.postRotate(90f)
+        // Jika kamera depan, flip horizontal
+        if (currentCameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA) {
+            matrix.preScale(-1f, 1f)
+        }
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
 }
