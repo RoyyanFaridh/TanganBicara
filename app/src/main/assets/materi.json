@@ -1,0 +1,117 @@
+[
+  {
+    "judul": "Pengenalan Bahasa Isyarat",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+      {
+        "judul": "Apa Itu Bahasa Isyarat?",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat adalah sistem komunikasi visual yang digunakan terutama oleh komunitas Tuli. Berbeda dari bahasa lisan, bahasa ini mengandalkan gerakan tangan, ekspresi wajah, dan gerakan tubuh untuk menyampaikan pesan."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat memiliki struktur dan tata bahasa tersendiri, bukan sekadar gerakan meniru kata-kata. Di Indonesia, salah satu bentuk yang digunakan secara luas adalah Bahasa Isyarat Indonesia (BISINDO). BISINDO berkembang secara alami di komunitas-komunitas Tuli di berbagai daerah.\n"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Sejarah bahasa isyarat secara global dimulai sejak abad ke-17, ketika para pendidik mencoba menciptakan metode pengajaran bagi anak-anak Tuli. Di Indonesia, perkembangan bahasa isyarat mengalami banyak tantangan karena minimnya pemahaman masyarakat umum, namun saat ini sudah mulai diterima dan diajarkan di berbagai institusi pendidikan.\n"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat bukan hanya alat bantu, tapi merupakan bagian dari budaya dan identitas komunitas Tuli.\n"
+          }
+        ]
+      },
+
+      {
+        "judul": "Kenapa Bahasa Isyarat Penting?",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat berperan penting dalam menciptakan dunia yang inklusif. Dengan memahami dan menggunakan bahasa isyarat, kita membuka ruang komunikasi bagi teman-teman Tuli yang selama ini sering terabaikan."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Bagi orang Tuli, bahasa isyarat adalah bahasa ibu. Itu berarti, bahasa isyarat bukan pilihan kedua, melainkan cara utama mereka untuk mengekspresikan diri, belajar, dan membangun hubungan. Tanpa akses ke komunikasi yang setara, mereka bisa tertinggal secara sosial, pendidikan, dan ekonomi.\n"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Bagi orang dengar, mempelajari bahasa isyarat bukan hanya menambah kemampuan baru, tetapi juga menumbuhkan empati dan kepedulian sosial. Hal ini mendorong kita untuk tidak lagi memandang tuli sebagai keterbatasan, melainkan sebagai bagian dari keberagaman manusia.\n"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Dengan semakin banyak orang yang bisa berbahasa isyarat, dunia akan menjadi tempat yang lebih terbuka, ramah, dan adil untuk semua.\n"
+          }
+        ]
+      },
+
+      {
+        "judul": "Jenis-Jenis Bahasa Isyarat",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+          },
+          {
+            "tipe": "gambar",
+            "isi": "materi1"
+          }
+        ]
+      }
+
+    ],
+    "progress": 40
+  },
+
+  {
+    "judul": "Alfabet Isyarat A-Z",
+    "deskripsi": "Memahami dasar-dasar bahasa isyarat, pentingnya, dan jenis-jenisnya.",
+    "subbab": [
+      {
+        "judul": "Alfabet A–Z dalam Bahasa Isyarat",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+          },
+          {
+            "tipe": "gambar",
+            "isi": "materi1"
+          }
+        ]
+      },
+
+      {
+        "judul": " Latihan Mengeja Nama",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+          },
+          {
+            "tipe": "gambar",
+            "isi": "materi1"
+          }
+        ]
+      },
+
+      {
+        "judul": "Permainan Interaktif",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+          },
+          {
+            "tipe": "gambar",
+            "isi": "materi1"
+          }
+        ]
+      }
+
+    ],
+    "progress": 40
+  }
+]

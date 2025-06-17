@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_light"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa. Donec finibus finibus risus,"
+            android:text="Aplikasi ini dirancang khusus untuk membantu Anda memahami dan mempelajari Bahasa Isyarat Indonesia dengan cara yang interaktif dan mudah."
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -100,10 +100,10 @@
                         <TextView
                             android:id="@+id/desc_TeksKeVideo"
                             android:layout_width="match_parent"
-                            android:layout_height="74dp"
+                            android:layout_height="80dp"
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
-                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
+                            android:text="Ubah teks menjadi video bahasa isyarat secara otomatis dan praktis untuk membantu komunikasi sehari-hari."
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -151,10 +151,10 @@
                         <TextView
                             android:id="@+id/desc_PenerjemahanIsyarat"
                             android:layout_width="match_parent"
-                            android:layout_height="74dp"
+                            android:layout_height="80dp"
                             android:fontFamily="@font/poppins_light"
                             android:gravity="center|top"
-                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed ullamcorper massa."
+                            android:text="Gunakan kamera perangkat Anda untuk mengenali gerakan tangan dan menerjemahkannya ke dalam teks tertulis."
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -209,7 +209,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_light"
-                                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                android:text="Pelajari berbagai materi dasar dan lanjutan bahasa isyarat yang interaktif."
                                 android:textSize="14sp"
                                 android:maxLines="2"
                                 android:ellipsize="end"/>

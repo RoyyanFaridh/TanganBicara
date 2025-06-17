@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white">
 
     <LinearLayout
@@ -12,7 +12,6 @@
         android:padding="24dp">
 
         <!-- Tombol Kembali -->
-
         <ImageButton
             android:id="@+id/btn_backEdukasi"
             android:layout_width="48dp"
@@ -21,18 +20,39 @@
             android:elevation="1dp"
             android:scaleType="centerInside"
             android:src="@drawable/ic_buttonback"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:tint="@null" />
 
+        <!-- Breadcrumb -->
         <TextView
             android:id="@+id/txtBreadcrumb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edukasi > Pengenalan Bahasa Isyarat"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_regular"
-            android:textSize="12sp"
+            android:text="Edukasi > Judul Materi"
             android:textColor="#888888"
-            android:layout_marginTop="24dp" />
+            android:textSize="12sp" />
+
+        <!-- Judul Subbab -->
+        <TextView
+            android:id="@+id/txtJudulMateri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Judul Subbab"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <!-- Konten Materi -->
+        <TextView
+            android:id="@+id/txtIsiMateri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Isi materi akan tampil di sini..."
+            android:textColor="#333333"
+            android:textSize="16sp" />
     </LinearLayout>
 </ScrollView>

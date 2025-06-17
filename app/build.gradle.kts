@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // JSON
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // CameraX
     implementation(libs.camerax.core)
