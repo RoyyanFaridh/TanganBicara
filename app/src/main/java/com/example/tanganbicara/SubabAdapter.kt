@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
+import com.google.gson.Gson
 
 class SubabAdapter(private val subbabList: List<Subbab>) :
     RecyclerView.Adapter<SubabAdapter.SubbabViewHolder>() {
@@ -24,7 +26,16 @@ class SubabAdapter(private val subbabList: List<Subbab>) :
         val subbab = subbabList[position]
         holder.judulTextView.text = subbab.judul
         holder.countTextView.text = "Materi ${position + 1}"
+
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, EdukasiDetail::class.java) // ganti nama kalau berbeda
+            intent.putExtra("judulSubbab", subbab.judul)
+            intent.putExtra("konten", Gson().toJson(subbab.konten))
+            context.startActivity(intent)
+        }
     }
+
 
     override fun getItemCount(): Int = subbabList.size
 }

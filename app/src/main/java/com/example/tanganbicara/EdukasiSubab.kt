@@ -9,39 +9,41 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 
-class EdukasiSubab : AppCompatActivity(){
+class EdukasiSubab : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edukasi_subab)
 
-        // Temukan tombol setelah setContentView dipanggil
+        // Inisialisasi tombol kembali
         val backButton = findViewById<ImageButton>(R.id.btn_backEdukasi)
         backButton.imageTintList = null
         backButton.setOnClickListener {
+            // Kembali ke halaman sebelumnya
             val intent = Intent(this, MateriEdukasi::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
-
         }
 
+        // Inisialisasi RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.rvSubab)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Ambil data dari Intent
         val materiJson = intent.getStringExtra("materi")
-        val materi = Gson().fromJson(materiJson, Materi::class.java)
+        if (materiJson != null) {
+            val materi = Gson().fromJson(materiJson, Materi::class.java)
 
-        val txtJudul = findViewById<TextView>(R.id.txtJudul)
-        val txtDeskripsi = findViewById<TextView>(R.id.txtDeskripsi)
-//        val txtBreadcrumb = findViewById<TextView>(R.id.txtBreadcrumb)
+            // Tampilkan judul dan deskripsi
+            findViewById<TextView>(R.id.txtJudul).text = materi.judul
+            findViewById<TextView>(R.id.txtDeskripsi).text = materi.deskripsi
 
-        txtJudul.text = materi.judul
-        txtDeskripsi.text = materi.deskripsi
-//        txtBreadcrumb.text = "Edukasi > ${materi.judul}"
-
-
-        val adapter = SubabAdapter(materi.subbab) // Asumsinya `subbab` adalah List<Subab>
-        recyclerView.adapter = adapter
-
+            // Set adapter
+            val adapter = SubabAdapter(materi.subbab)
+            recyclerView.adapter = adapter
+        } else {
+            // Fallback jika data null
+            findViewById<TextView>(R.id.txtJudul).text = "Materi tidak ditemukan"
+        }
     }
 }
