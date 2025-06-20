@@ -12,15 +12,15 @@
           },
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat memiliki struktur dan tata bahasa tersendiri, bukan sekadar gerakan meniru kata-kata. Di Indonesia, salah satu bentuk yang digunakan secara luas adalah Bahasa Isyarat Indonesia (BISINDO). BISINDO berkembang secara alami di komunitas-komunitas Tuli di berbagai daerah.\n"
+            "isi": "Bahasa isyarat memiliki struktur dan tata bahasa tersendiri, bukan sekadar gerakan meniru kata-kata. Di Indonesia, salah satu bentuk yang digunakan secara luas adalah Bahasa Isyarat Indonesia (BISINDO). BISINDO berkembang secara alami di komunitas-komunitas Tuli di berbagai daerah."
           },
           {
             "tipe": "teks",
-            "isi": "Sejarah bahasa isyarat secara global dimulai sejak abad ke-17, ketika para pendidik mencoba menciptakan metode pengajaran bagi anak-anak Tuli. Di Indonesia, perkembangan bahasa isyarat mengalami banyak tantangan karena minimnya pemahaman masyarakat umum, namun saat ini sudah mulai diterima dan diajarkan di berbagai institusi pendidikan.\n"
+            "isi": "Sejarah bahasa isyarat secara global dimulai sejak abad ke-17, ketika para pendidik mencoba menciptakan metode pengajaran bagi anak-anak Tuli. Di Indonesia, perkembangan bahasa isyarat mengalami banyak tantangan karena minimnya pemahaman masyarakat umum, namun saat ini sudah mulai diterima dan diajarkan di berbagai institusi pendidikan."
           },
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat bukan hanya alat bantu, tapi merupakan bagian dari budaya dan identitas komunitas Tuli.\n"
+            "isi": "Bahasa isyarat bukan hanya alat bantu, tapi merupakan bagian dari budaya dan identitas komunitas Tuli."
           }
         ]
       },
@@ -34,15 +34,15 @@
           },
           {
             "tipe": "teks",
-            "isi": "Bagi orang Tuli, bahasa isyarat adalah bahasa ibu. Itu berarti, bahasa isyarat bukan pilihan kedua, melainkan cara utama mereka untuk mengekspresikan diri, belajar, dan membangun hubungan. Tanpa akses ke komunikasi yang setara, mereka bisa tertinggal secara sosial, pendidikan, dan ekonomi.\n"
+            "isi": "Bagi orang Tuli, bahasa isyarat adalah bahasa ibu. Itu berarti, bahasa isyarat bukan pilihan kedua, melainkan cara utama mereka untuk mengekspresikan diri, belajar, dan membangun hubungan. Tanpa akses ke komunikasi yang setara, mereka bisa tertinggal secara sosial, pendidikan, dan ekonomi."
           },
           {
             "tipe": "teks",
-            "isi": "Bagi orang dengar, mempelajari bahasa isyarat bukan hanya menambah kemampuan baru, tetapi juga menumbuhkan empati dan kepedulian sosial. Hal ini mendorong kita untuk tidak lagi memandang tuli sebagai keterbatasan, melainkan sebagai bagian dari keberagaman manusia.\n"
+            "isi": "Bagi orang dengar, mempelajari bahasa isyarat bukan hanya menambah kemampuan baru, tetapi juga menumbuhkan empati dan kepedulian sosial. Hal ini mendorong kita untuk tidak lagi memandang tuli sebagai keterbatasan, melainkan sebagai bagian dari keberagaman manusia."
           },
           {
             "tipe": "teks",
-            "isi": "Dengan semakin banyak orang yang bisa berbahasa isyarat, dunia akan menjadi tempat yang lebih terbuka, ramah, dan adil untuk semua.\n"
+            "isi": "Dengan semakin banyak orang yang bisa berbahasa isyarat, dunia akan menjadi tempat yang lebih terbuka, ramah, dan adil untuk semua."
           }
         ]
       },
@@ -52,33 +52,85 @@
         "konten": [
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+            "isi": "Tahukah kamu bahwa bahasa isyarat tidak hanya satu jenis? Di dunia, ada banyak sistem bahasa isyarat yang berbeda, sama seperti bahasa lisan. Masing-masing berkembang sesuai budaya dan kebiasaan masyarakat setempat."
           },
           {
-            "tipe": "gambar",
-            "isi": "materi1"
+            "tipe": "teks",
+            "isi": "Beberapa contoh di antaranya:"
+          },
+          {
+            "tipe": "teks",
+            "isi": "1. BISINDO (Bahasa Isyarat Indonesia): Bahasa isyarat alami yang digunakan komunitas Tuli di berbagai wilayah Indonesia. Gerakannya ekspresif dan fleksibel, serta berkembang secara turun-temurun. BISINDO tidak mengikuti struktur tata bahasa Indonesia, tapi punya struktur sendiri."
+          },
+          {
+            "tipe": "teks",
+            "isi": "2. SIBI (Sistem Isyarat Bahasa Indonesia): Sistem yang dikembangkan pemerintah dengan menyesuaikan bahasa isyarat ke dalam struktur bahasa Indonesia. SIBI sering digunakan di sekolah formal, tapi dianggap kurang alami oleh komunitas Tuli."
+          },
+          {
+            "tipe": "teks",
+            "isi": "3. ASL (American Sign Language): Digunakan di Amerika Serikat dan beberapa negara lainnya. ASL memiliki struktur yang sangat berbeda dari bahasa Inggris, dan tidak dapat diterjemahkan kata per kata."
+          },
+          {
+            "tipe": "teks",
+            "isi": "4. ISL (International Sign Language): Bentuk bahasa isyarat yang digunakan dalam forum internasional. Bersifat universal namun terbatas, karena tidak bisa menggantikan kedalaman komunikasi bahasa isyarat lokal."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Meskipun banyak jenisnya, semua bahasa isyarat memiliki tujuan yang sama: memungkinkan komunikasi yang efektif bagi komunitas Tuli dan pendengarnya."
+          }
+        ]
+      },
+      {
+        "judul": "Sejarah Bahasa Isyarat",
+        "konten": [
+          {
+            "tipe": "teks",
+            "isi": "Sejarah perkembangan bahasa isyarat di Indonesia berawal dari kontak antara komunitas Tuli dan berbagai misionaris serta pendidik yang membawa pengaruh bahasa isyarat dari negara lain. Pada awal abad ke-20, sekolah-sekolah bagi Tuli didirikan oleh misionaris Belanda yang membawa pengaruh dari bahasa isyarat Belanda (Nederlandse Gebarentaal). Namun, seiring dengan berkembangnya komunitas Tuli di Indonesia, Bahasa isyarat yang digunakan oleh komunitas-komunitas ini mulai mengembangkan ciri-ciri lokal yang unik,membentuk variasi bahasa isyarat yang berbeda di berbagai daerah."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Salah satu faktor yang berperan dalam perkembangan bahasa isyarat di Indonesia adalah kurangnya standarisasi dan pengajaran bahasa isyarat secara formal di seluruh Indonesia. Akibatnya, komunitas Tuli di berbagai daerah mengembangkan sistem isyarat yang unik dan berbeda satu sama lain. Dalam beberapa dekade terakhir, upaya untuk mengkodifikasi dan standarisasi bahasa isyarat di Indonesia telah dilakukan, tetapi perbedaan regional tetap ada dan menjadi bagian dari keragaman budaya Tuli di Indonesia"
           }
         ]
       }
-
     ],
     "progress": 40
   },
 
   {
     "judul": "Alfabet Isyarat A-Z",
-    "deskripsi": "Memahami dasar-dasar bahasa isyarat, pentingnya, dan jenis-jenisnya.",
+    "deskripsi": "Dalam bab ini, kamu akan mempelajari bagaimana mengeja huruf A sampai Z menggunakan bahasa isyarat satu tangan. Alfabet jari (fingerspelling) sangat penting dalam komunikasi bahasa isyarat, terutama untuk menyebut nama, singkatan, atau kata-kata yang belum memiliki isyarat khusus.",
     "subbab": [
       {
         "judul": "Alfabet A–Z dalam Bahasa Isyarat",
         "konten": [
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+            "isi": "Alfabet isyarat adalah sistem untuk mengeja huruf dari A sampai Z menggunakan tangan. Umumnya, di Indonesia dan banyak negara lain, digunakan isyarat satu tangan seperti dalam sistem American Sign Language (ASL) atau variasinya yang diadaptasi ke BISINDO."
           },
           {
-            "tipe": "gambar",
-            "isi": "materi1"
+            "tipe": "teks",
+            "isi": "Setiap huruf memiliki bentuk tangan yang unik. Misalnya, huruf \"A\" dibuat dengan mengepalkan tangan dan jempol ke samping, sementara huruf \"B\" dilakukan dengan menegakkan empat jari dan ibu jari di depan telapak."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Alfabet jari digunakan ketika kita ingin:"
+          },
+          {
+            "tipe": "teks",
+            "isi": "a. Mengeja nama orang atau tempat"
+          },
+          {
+            "tipe": "teks",
+            "isi": "b. Menyebut singkatan (seperti TTS, PKK)"
+          },
+          {
+            "tipe": "teks",
+            "isi": "c. Mengucapkan kata yang belum punya tanda isyarat khusus"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Belajar alfabet jari membantu kamu memahami struktur dasar bahasa isyarat dan memperkaya komunikasi non-verbal secara visual."
           }
         ]
       },
@@ -88,11 +140,19 @@
         "konten": [
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+            "isi": "Sekarang saatnya kamu mempraktikkan apa yang telah dipelajari! Dalam latihan ini, kamu akan mengeja nama kamu sendiri menggunakan alfabet isyarat."
           },
           {
-            "tipe": "gambar",
-            "isi": "materi1"
+            "tipe": "teks",
+            "isi": "Mulailah dengan menyebutkan huruf pertama dari nama kamu, lalu bentuk huruf tersebut dengan tanganmu. Lanjutkan hingga nama selesai. Jika kamu kesulitan, buka kembali panduan alfabet A–Z."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Nama: Rani\nR: tangan membentuk seperti huruf R (dua jari menyilang)\nA: tangan mengepal dengan ibu jari ke samping\nN: dua jari membentuk huruf N\nI: jari kelingking berdiri"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Kamu juga bisa mengeja nama teman atau tokoh favoritmu. Semakin sering berlatih, semakin cepat kamu mengenali bentuknya tanpa melihat panduan lagi. Berdirilah di depan cermin agar kamu bisa melihat apakah posisi tanganmu sudah benar."
           }
         ]
       },
@@ -102,16 +162,58 @@
         "konten": [
           {
             "tipe": "teks",
-            "isi": "Bahasa isyarat adalah bentuk komunikasi visual menggunakan tangan, ekspresi wajah..."
+            "isi": "Untuk membuat belajar lebih seru, kamu bisa mencoba permainan tebak huruf. Di dalam permainan ini, akan ditampilkan gambar posisi tangan tertentu, dan kamu harus menebak huruf apa yang ditunjukkan."
           },
           {
             "tipe": "gambar",
-            "isi": "materi1"
+            "isi": "Setiap jawaban benar akan menambah poin dan membuka level berikutnya. Semakin tinggi level, semakin cepat waktu yang diberikan dan bentuk huruf semakin rumit dibedakan (contoh: M dan N sangat mirip)."
+          },
+          {
+            "tipe": "teks",
+            "isi": "Permainan ini bertujuan:\na. Mengasah daya ingat visual terhadap alfabet jari\nb. Meningkatkan kecepatan mengenali huruf\nc. Memberikan semangat belajar melalui tantangan"
+          },
+          {
+            "tipe": "teks",
+            "isi": "Kamu juga bisa bermain berdua dengan teman: satu orang membentuk huruf, dan yang lain menebak!"
           }
         ]
       }
-
     ],
     "progress": 40
+  },
+  {
+    "judul": "Angka dalam Bahasa Isyarat",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+
+    ]
+  },
+  {
+    "judul": "Sapaan dalam Kalimat Dasar",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+
+    ]
+  },
+  {
+    "judul": "Kata Ganti dan Diri Sendiri",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+
+    ]
+  },
+  {
+    "judul": "Kosa Kata Sehari-hari",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+
+    ]
+  },
+  {
+    "judul": "Waktu dan Hari",
+    "deskripsi": "Dalam materi ini, kamu akan mempelajari dasar-dasar bahasa isyarat, mulai dari pengertiannya, alasan pentingnya dipahami oleh masyarakat umum, hingga berbagai jenis bahasa isyarat yang digunakan di berbagai negara. Dengan memahami materi ini, kamu tidak hanya belajar bahasa baru, tapi juga membuka jalan untuk komunikasi yang inklusif dan saling menghargai. Mari mulai mengenal bahasa yang 'berbicara' lewat tangan dan ekspresi!",
+    "subbab": [
+
+    ]
   }
 ]

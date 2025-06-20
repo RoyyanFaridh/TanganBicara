@@ -17,7 +17,7 @@ class MateriAdapter(
         val textJudul: TextView = itemView.findViewById(R.id.textJudul)
         val textJumlah: TextView = itemView.findViewById(R.id.textJumlah)
         val progressBar: ProgressBar = itemView.findViewById(R.id.progressMateri)
-        val imageMateri: ImageView = itemView.findViewById(R.id.imageMateri)
+//        val imageMateri: ImageView = itemView.findViewById(R.id.imageMateri)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MateriViewHolder {
@@ -31,7 +31,7 @@ class MateriAdapter(
         holder.textJudul.text = materi.judul
         holder.textJumlah.text = "${materi.subbab.size} Materi"
         holder.progressBar.progress = materi.progress
-        holder.imageMateri.setImageResource(R.drawable.ic_launcher_foreground) // ganti jika pakai gambar dinamis
+//        holder.imageMateri.setImageResource(R.drawable.ic_launcher_foreground) // ganti jika pakai gambar dinamis
 
         // Event klik
         holder.itemView.setOnClickListener {

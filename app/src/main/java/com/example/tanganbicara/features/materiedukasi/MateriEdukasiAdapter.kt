@@ -29,7 +29,7 @@ class MateriEdukasiAdapter(
             binding.textJudul.text = materi.judul
             binding.textJumlah.text = "${materi.jumlahMateri} Materi"
             binding.progressMateri.progress = materi.progress
-            binding.imageMateri.setImageResource(materi.gambarResId)
+//            binding.imageMateri.setImageResource(materi.gambarResId)
 
             binding.root.setOnClickListener {
                 onItemClick(materi)

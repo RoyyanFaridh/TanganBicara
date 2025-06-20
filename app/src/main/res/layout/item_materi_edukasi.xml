@@ -24,13 +24,13 @@
             android:orientation="horizontal"
             android:padding="12dp">
 
-            <ImageView
-                android:id="@+id/imageMateri"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@color/design_default_color_background"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_foreground" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageMateri"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:background="@color/design_default_color_background"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/ic_launcher_foreground" />-->
 
             <LinearLayout
                 android:layout_width="0dp"
